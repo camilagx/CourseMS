@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta charset="ISO-8859-1">
+<head>
+	<title>Instructors</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" th:href="@{/instructors}"> Instructors</a>
+      <a class="nav-item nav-link" href="#">Pricing</a>
+      <a class="nav-item nav-link disabled" href="#">Disabled</a>
+    </div>
+  </div>
+</nav>
+	<div class="container">
+		<div class="row">
+			<div>
+			<h1 class="text-center">Update Instructor</h1>
+				<div class="card-body">
+					<!-- Created Instructor from controller and using instructor object in view -->
+					<!-- Return to main instructor page after creating new instructor -->
+					<form th:action="@{/instructors/{id} (id=${instructor.id})}" th:object="${instructor}" method="POST">
+					<div class="form-group">
+						<label>First Name: </label>
+						<!-- Field = variable name -->
+						<input type="text" 
+						name="firstName" 
+						th:field="*{firstName}" 
+						class="form-control" 
+						placeholder="Enter First Name"/>	
+					</div>
+					<div class="form-group">
+						<label>Last Name: </label>
+						<!-- Field = variable name -->
+						<input type="text" 
+						name="lastName" 
+						th:field="*{lastName}" 
+						class="form-control"
+						placeholder="Enter Last Name"/>	
+					</div>
+					<div class="form-group">
+						<label>Email: </label>
+						<!-- Field = variable name -->
+						<input type="text" 
+						name="email" 
+						th:field="*{email}"
+						class="form-control"
+						placeholder="Enter Email"/>	
+					</div>
+					<div class="form-group">
+					<label>Program: </label>
+						<select>
+							<option value="">Select Program</option>
+						   	<option th:each="program : ${programList}" 
+							   	th:value="${program.programId}" 
+							    th:text="${program.programName}">
+							</option>
+						</select>
+					</div> 
+					<div class="card-footer">
+					<button type="submit" class ="btn btn-primary">Submit</button>
+					</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
