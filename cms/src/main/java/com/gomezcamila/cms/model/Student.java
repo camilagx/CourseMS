@@ -24,10 +24,9 @@ public class Student {
 	public Student() {
 	}
 
-	public Student(String firstName, String lastName, Cohort cohort) {
+	public Student(String firstName, String lastName) {
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.cohort = cohort;
 	}
 
 	public Long getStudentId() {

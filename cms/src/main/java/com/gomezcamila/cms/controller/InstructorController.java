@@ -38,17 +38,20 @@ public class InstructorController {
 	}
 	@PostMapping("/instructors") 
 	public String saveInstructor
-	  			(@Valid Instructor instructor, BindingResult result) {
+	  			(@Valid Instructor instructor, BindingResult result,
+	  					Model model) {
 	  
-	  if(result.hasErrors())
+	  if(result.hasErrors()) {
+		    model.addAttribute("programList", instructorService.getProgramNames());
 			return "createInstructorForm";
+	  }
 	  //set instructor's program id
 	  instructorService.saveInstructor(instructor);
 	  
 	  //Show added instructor to main instructor page return
 	  return "redirect:/instructors"; 
 	  }
-	// Get form to create new update
+	// Get form to update current Instructor
 	@GetMapping("/instructors/update/{id}")
 	public String updateInstructor(@PathVariable Long id, Model model) {
 
@@ -70,6 +73,7 @@ public class InstructorController {
 		currentInstructor.setFirstName(instructor.getFirstName());
 		currentInstructor.setLastName(instructor.getLastName());
 		currentInstructor.setEmail(instructor.getEmail());
+		currentInstructor.setProgramName(instructor.getProgramName());
 
 		// Save the updates into database
 		instructorService.updateInstructor(currentInstructor);

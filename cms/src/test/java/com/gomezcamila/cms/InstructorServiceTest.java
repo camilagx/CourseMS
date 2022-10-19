@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.gomezcamila.cms.model.Instructor;
 import com.gomezcamila.cms.repository.InstructorRepository;
+import com.gomezcamila.cms.utilities.TypeOfStatusEnum;
 
 @SpringBootTest(classes = CmsApplication.class)
 public class InstructorServiceTest {
@@ -19,7 +20,7 @@ public class InstructorServiceTest {
 	//Test custom Query methods
 	//Tests if instructors from resultset have 'unassigned' status
 	@Test
-	void getUnassignedInstructorsTest(){
+	void getInstructorsByStatusTest(){
 		
 		//given
 		List<Instructor> instructors = 
@@ -31,8 +32,10 @@ public class InstructorServiceTest {
 		//when
 		String expectedInstructorStatus1 = instructors.get(0).getStatus();
 		String expectedInstructorStatus2 = instructors.get(2).getStatus();
-		String actualInstructorStatus1 = instructorRepository.getUnassignedInstructors().get(0).getStatus();
-		String actualInstructorStatus2 = instructorRepository.getUnassignedInstructors().get(1).getStatus();
+		
+		String status = TypeOfStatusEnum.UNASSIGNED.getStatus();
+		String actualInstructorStatus1 = instructorRepository.getInstructorsByStatus(status).get(0).getStatus();
+		String actualInstructorStatus2 = instructorRepository.getInstructorsByStatus(status).get(1).getStatus();
 		
 		//then
 		Assertions.assertEquals(expectedInstructorStatus1, actualInstructorStatus1 );

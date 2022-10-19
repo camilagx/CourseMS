@@ -22,17 +22,16 @@ public class Cohort {
 	@OneToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE,
 			  CascadeType.DETACH, CascadeType.REFRESH})
 	@JoinColumn(name="instructor_id")
-	private Instructor instructorId;
+	private Instructor instructor;
 	
 	
 	public Cohort() {
 	}
 
-	public Cohort(String startDate, String endDate,String programName, Instructor instructorId) {
+	public Cohort(String startDate, String endDate,String programName){
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.programName = programName;
-		this.instructorId = instructorId;
 	}
 
 	public Long getCohortId() {
@@ -59,7 +58,7 @@ public class Cohort {
 		this.endDate = endDate;
 	}
 
-	public String getProgramName() {
+	public String getProgramName(){
 		return programName;
 	}
 
@@ -67,18 +66,18 @@ public class Cohort {
 		this.programName = programName;
 	}
 
-	public Instructor getInstructorId() {
-		return instructorId;
+	public Instructor getInstructor() {
+		return instructor;
 	}
 
-	public void setInstructorId(Instructor instructorId) {
-		this.instructorId = instructorId;
+	public void setInstructor(Instructor instructor) {
+		this.instructor= instructor;
 	}
 
 	@Override
 	public String toString() {
 		return "Cohort [cohortId=" + cohortId + ", startDate=" + startDate + ", endDate=" + endDate + ", programName="
-				+ programName + ", instructorId=" + instructorId + "]";
+				+ programName + ", instructorId=" + instructor + "]";
 	}	
 	
 }

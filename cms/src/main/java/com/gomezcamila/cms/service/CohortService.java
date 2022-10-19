@@ -40,7 +40,8 @@ public class CohortService {
 		Cohort cohortDeleted = cohortRepository.findById(id).get();
 		cohortRepository.deleteById(id);
 		
-		
 		return cohortDeleted;
 	}
+	
+	//Custom Queries. Get Cohort start date by ASC order
 }

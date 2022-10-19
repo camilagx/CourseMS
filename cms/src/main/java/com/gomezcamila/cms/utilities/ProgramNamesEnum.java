@@ -7,20 +7,13 @@ public enum ProgramNamesEnum {
 	UX_DESIGN("UX Design"),
 	IT_SUPPORT("IT Support");
 	
-	public String programName;
+	final public String programName;
 	
 	ProgramNamesEnum(String programName){
 		this.programName = programName;
 		
-	}
-
-	public String getProgramName() {
+	}	
+	public String getProgamName() {
 		return programName;
 	}
-
-	public void setProgramName(String programName) {
-		this.programName = programName;
-	}
-	
-	
 }

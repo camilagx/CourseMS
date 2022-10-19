@@ -2,7 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <meta charset="ISO-8859-1">
 <head>
-	<title>Cohorts</title>
+	<title>Instructors</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
 	<!-- CSS BootStrap -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<!-- JavaScript Bundle with Popper -->
@@ -23,7 +24,9 @@
         <a class="nav-link" th:href="@{/instructors}">Instructors</a>
       </li>
       <li class="nav-item dropdown">
-        <a href="" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Cohorts</a>
+        <a href="" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+          Cohorts
+        </a>
         <ul class="dropdown-menu">
           <li><a class="dropdown-item" th:href="@{/cohorts}">Cohort List</a></li>
           <li><a class="dropdown-item" th:href="@{/cohortInstructor}">Upcoming Cohorts</a></li>
@@ -32,40 +35,27 @@
     </ul>
   </div>
 </nav> 
-<div class="container">
-		<div class="row">
-			<h1>Cohorts</h1>
-		</div>
-		<div>
-			<a th:href = "@{/cohorts/new}" class="btn btn-primary btn-sm mb-3">Add Cohort</a>
-		</div>
-		<!-- Bootstrap table -->
-		<table class="table table-striped table-dark table-bordered">
+</body>
+	<div class="upcohort-container">
+	</div>
+	<div class="cohortStatus-container">
+		<div class="cohortStatus-content">
+		<table>
 			<thead>
 				<tr>
 					<th>Cohort ID</th>
-					<th>Start Date</th>
-					<th>End Date</th>
 					<th>Program</th>
+					<th>Start Date<th>
+					<th>End Date<th>
+					<th>Status</th>
 				</tr>
 			</thead>
-			<!--Display the list dynamically. Access instructors like a for-each loop -->
-			<tbody>
-				<tr th:each ="cohort : ${cohorts}">
-					<td th:text="*{cohort.cohortId}"></td>
-					<td th:text="*{cohort.startDate}"></td>
-					<td th:text="*{cohort.endDate}"></td>
-					<td th:text="*{cohort.programName}"></td>
-					
-					<!-- <td>
-						Calls update/{id} handler and binds current instructor's id to handler
-						<a th:href = "@{/instructors/update/{id}(id=${instructor.id})}" class="btn btn-primary btn-sm mb-3">Update</a>
-						<a th:href = "@{/instructors/{id}(id=${instructor.id})}" class="btn btn-danger btn-sm mb-3">Delete</a>
-					</td> -->
-				</tr>
-			</tbody>
+			
+		
 		</table>
+		</div>
 	</div>
 
-</body>
+
+
 </html>

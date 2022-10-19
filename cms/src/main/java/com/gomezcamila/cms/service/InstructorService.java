@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import com.gomezcamila.cms.model.Instructor;
 import com.gomezcamila.cms.repository.InstructorRepository;
@@ -26,8 +24,8 @@ public class InstructorService{
 	}
 
 	//implemented query from instructor repository
-	public List<Instructor> getUnassignedInstructors(){
-		return instructorRepository.getUnassignedInstructors();
+	public List<Instructor> getInstructorsByStatus(String status){
+		return instructorRepository.getInstructorsByStatus(status);
 	}
 	
 	//Will allow filtering of Instructors by program
@@ -45,7 +43,7 @@ public class InstructorService{
 		List<String> programNames = new ArrayList<>();
 		
 		for(ProgramNamesEnum name: ProgramNamesEnum.values()) {
-			programNames.add(name.getProgramName());
+			programNames.add(name.getProgamName());
 		}
 		return programNames;	
 	}
