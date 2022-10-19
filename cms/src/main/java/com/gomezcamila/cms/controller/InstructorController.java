@@ -1,14 +1,13 @@
 package com.gomezcamila.cms.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
 import com.gomezcamila.cms.model.Instructor;
-import com.gomezcamila.cms.model.Program;
-//import com.gomezcamila.cms.model.Program;
-//import com.gomezcamila.cms.repository.InstructorRepository;
 import com.gomezcamila.cms.service.InstructorService;
 
 @Controller
@@ -32,35 +31,19 @@ public class InstructorController {
 		// create Instructor object and store user input
 		model.addAttribute("instructor", new Instructor());
 
-		/*
-		 * //getProgramNames() returns a List of Program Names
-		 * model.addAttribute("programNames",instructorService.getProgramNames());
-		 */
-
-		// Add program object to set program for instructor
-		model.addAttribute("programList", instructorService.getAllPrograms());
+		//Get list of programs avaialble
+		model.addAttribute("programList", instructorService.getProgramNames());
 
 		return "createInstructorForm";
 	}
 	@PostMapping("/instructors") 
-	  public String saveInstructor
-	  			(@ModelAttribute("instructor")Instructor instructor,
-	  			@ModelAttribute("program")Program program) {
+	public String saveInstructor
+	  			(@Valid Instructor instructor, BindingResult result) {
 	  
-	  System.out.println("This is passed in instructor: " + instructor); Instructor
-	  newInstructor = instructorService.getInstructorById(instructor.getId());
-	  
-	  System.out.println("This is newInstructor: " + newInstructor);
-	  System.out.println("This is passed in program: " + program);
-	  System.out.println("This is passed in program ID: " +
-	  program.getProgramId());
-	  
-	  
-	  newInstructor.setProgram(instructorService.getProgramById(program.
-	  getProgramId()));
-	  
+	  if(result.hasErrors())
+			return "createInstructorForm";
 	  //set instructor's program id
-	  instructorService.saveInstructor(newInstructor);
+	  instructorService.saveInstructor(instructor);
 	  
 	  //Show added instructor to main instructor page return
 	  return "redirect:/instructors"; 
@@ -71,7 +54,7 @@ public class InstructorController {
 
 		model.addAttribute("instructor", instructorService.getInstructorById(id));
 		// Add program object to set program for instructor
-		model.addAttribute("programList", instructorService.getAllPrograms());
+		model.addAttribute("programList", instructorService.getProgramNames());
 
 		return "updateInstructor";
 	}

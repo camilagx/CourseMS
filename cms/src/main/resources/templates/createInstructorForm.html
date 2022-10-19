@@ -3,11 +3,12 @@
 <meta charset="ISO-8859-1">
 <head>
 	<title>Instructors</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Navbar</a>
+  <a class="navbar-brand" href="#">CourseMS</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -15,7 +16,7 @@
     <div class="navbar-nav">
       <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
       <a class="nav-item nav-link" th:href="@{/instructors}"> Instructors</a>
-      <a class="nav-item nav-link" href="@{/instructors}">Cohorts</a>
+      <a class="nav-item nav-link" th:href="@{/cohorts}">Cohorts</a>
       <a class="nav-item nav-link disabled" href="#">Disabled</a>
     </div>
   </div>
@@ -27,9 +28,11 @@
 				<div class="card-body">
 					<!-- Created Instructor from controller and using instructor object in view -->
 					<!-- Return to main instructor page after creating new instructor -->
-					<form th:action="@{/instructors" th:object="${instructor}" method="POST">
+					<form th:action="@{/instructors}" th:object="${instructor}" method="POST">
 					<div class="form-group">
 						<label>First Name: </label>
+						<!-- Display error if left blank -->
+						<p class="error-message" th:errors="*{firstName}"></p>
 						<!-- Field = variable name -->
 						<input type="text" 
 						name="firstName" 
@@ -39,6 +42,8 @@
 					</div>
 					<div class="form-group">
 						<label>Last Name: </label>
+						<!-- Display error if left blank -->
+						<p class="error-message" th:errors="*{lastName}"></p>
 						<!-- Field = variable name -->
 						<input type="text" 
 						name="lastName" 
@@ -57,15 +62,31 @@
 					</div>
 					<div class="form-group">
 					<label>Program: </label>
-						<select>
+					<p class="error-message" th:errors="*{programName}"></p>
+						<select th:field="*{programName}">
+							<option value="">Select Program</option>
+						   	<option th:each="programName : ${programList}" 
+							    th:value="${programName}" 
+							    th:text="${programName}">
+							</option>
+						</select>
+					</div>  
+					<!--
+					ORIGINAL
+					 
+					 <div class="form-group">
+					<label>Program: </label>
+						<select th:field="*{program}">
 							<option value="">Select Program</option>
 						   	<option th:each="program : ${programList}" 
-						   		th:object="program"
 							   	th:value="*{programId}" 
 							    th:text="*{programName}">
 							</option>
 						</select>
 					</div>  
+					
+					 -->
+				
 					<div class="card-footer">
 					<button type="submit" class ="btn btn-primary">Submit</button>
 					</div>

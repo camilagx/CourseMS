@@ -1,6 +1,9 @@
 package com.gomezcamila.cms.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+
+
 
 @Entity
 @Table(name="instructor")
@@ -10,9 +13,11 @@ public class Instructor {
 	@Column(name="instructor_id")
 	private Long id;
 	
+	@NotBlank(message="First name cannot be blank")
 	@Column(name="first_name")
 	private String firstName;
 	
+	@NotBlank(message="Last name cannot be blank")
 	@Column(name="last_name")
 	private String lastName;
 	
@@ -22,21 +27,19 @@ public class Instructor {
 	@Column
 	private String status = "unassigned";
 	
-	@ManyToOne(targetEntity = Program.class,
-			 cascade= {CascadeType.PERSIST, CascadeType.MERGE,
-			 CascadeType.DETACH, CascadeType.REFRESH})
-	@JoinColumn(name="program_id")
-	private Program program;
-
+	@NotBlank(message="Program must be selected")
+	@Column(name="program_name")
+	private String programName;
+	
 	public Instructor() {
 	}
-	
-	public Instructor(String firstName, String lastName, String email, String status, Program program) {
+
+	public Instructor(String firstName, String lastName, String email, String status, String programName) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.status = status;
-		this.program = program;
+		this.programName = programName;
 	}
 
 	public Long getId() {
@@ -79,19 +82,20 @@ public class Instructor {
 		this.status = status;
 	}
 
-	public Program getProgram() {
-		return this.program;
+	public String getProgramName() {
+		return programName;
 	}
-	
-	public void setProgram(Program program) {
-		this.program = program;
+
+	public void setProgramName(String programName) {
+		this.programName = programName;
 	}
 
 	@Override
 	public String toString() {
-		return "Instructor [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", status=" + status + ", program=" + program + "]";
+		return "instructorId" + id + "firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
+				+ ", status=" + status + ", programName=" + programName + "]";
 	}
+	
 	
 	
 }

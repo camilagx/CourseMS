@@ -13,14 +13,14 @@ public class CohortService {
 	CohortRepository cohortRepository;
 	
 	//READ ONLY - Get All cohorts
-	public List<Cohort> getAllCohort(){
+	public List<Cohort> getAllCohorts(){
 		return cohortRepository.findAll();
 	}
 	//READ ONLY - Get Cohort by ID
 	public Cohort getCohortById(Long id){
 		return cohortRepository.findById(id).get();
 	}
-	
+
 	//Create
 	public Cohort saveCohort(Cohort cohort) {
 		Cohort newCohort = cohortRepository.findById(cohort.getCohortId()).get();

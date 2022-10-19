@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <meta charset="ISO-8859-1">
 <head>
-	<title>Instructors</title>
+	<title>Cohorts</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
@@ -20,39 +20,40 @@
     </div>
   </div>
 </nav>
-	<div class="container">
+<div class="container">
 		<div class="row">
 			<h1>List Instructors</h1>
 		</div>
 		<div>
-			<a th:href = "@{/instructors/new}" class="btn btn-primary btn-sm mb-3">Add Instructor</a>
+			<a th:href = "@{/cohorts/new}" class="btn btn-primary btn-sm mb-3">Add Cohort</a>
 		</div>
 		<!-- Bootstrap table -->
 		<table class="table table-striped table-dark table-bordered">
 			<thead>
 				<tr>
-					<th>First Name</th>
-					<th>Last Name</th>
-					<th>Email</th>
+					<th>Cohort ID</th>
+					<th>Start Date</th>
+					<th>End Date</th>
 					<th>Program</th>
-					<th>Make Changes</th>
 				</tr>
 			</thead>
 			<!--Display the list dynamically. Access instructors like a for-each loop -->
 			<tbody>
-				<tr th:each ="instructor : ${instructors}">
-					<td th:text="*{instructor.firstName}"></td>
-					<td th:text="*{instructor.lastName}"></td>
-					<td th:text="*{instructor.email}"></td>
-					<td th:text="*{instructor.programName}"></td>
-					<td>
-						<!-- Calls update/{id} handler and binds current instructor's id to handler -->
+				<tr th:each ="cohort : ${cohorts}">
+					<td th:text="*{cohort.cohortId}"></td>
+					<td th:text="*{cohort.startDate}"></td>
+					<td th:text="*{cohort.endDate}"></td>
+					<td th:text="*{cohort.programName}"></td>
+					
+					<!-- <td>
+						Calls update/{id} handler and binds current instructor's id to handler
 						<a th:href = "@{/instructors/update/{id}(id=${instructor.id})}" class="btn btn-primary btn-sm mb-3">Update</a>
 						<a th:href = "@{/instructors/{id}(id=${instructor.id})}" class="btn btn-danger btn-sm mb-3">Delete</a>
-					</td>
+					</td> -->
 				</tr>
 			</tbody>
 		</table>
 	</div>
+
 </body>
 </html>

@@ -24,8 +24,7 @@ public class Student {
 	public Student() {
 	}
 
-	public Student(Long studentId, String firstName, String lastName, Cohort cohort) {
-		this.studentId = studentId;
+	public Student(String firstName, String lastName, Cohort cohort) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.cohort = cohort;
@@ -68,7 +67,5 @@ public class Student {
 		return "Student [studentId=" + studentId + ", firstName=" + firstName + ", lastName=" + lastName + ", cohort="
 				+ cohort + "]";
 	}
-	
-	
 	
 }

@@ -1,8 +1,5 @@
 package com.gomezcamila.cms.model;
 
-
-import java.util.Set;
-
 import javax.persistence.*;
 
 @Entity
@@ -19,21 +16,23 @@ public class Cohort {
 	@Column(name="end_date", nullable=false)
 	private String endDate;
 	
-	@Column
-	private String status = "unassigned";
+	@Column(name="program_name")
+	private String programName;
 	
-	@ManyToMany(mappedBy="cohorts")
-	private Set<Program> program;
-
+	@OneToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+			  CascadeType.DETACH, CascadeType.REFRESH})
+	@JoinColumn(name="instructor_id")
+	private Instructor instructorId;
+	
+	
 	public Cohort() {
 	}
 
-	public Cohort(Long cohortId, String startDate, String endDate, String status, Set<Program> program) {
-		this.cohortId = cohortId;
+	public Cohort(String startDate, String endDate,String programName, Instructor instructorId) {
 		this.startDate = startDate;
 		this.endDate = endDate;
-		this.status = status;
-		this.program = program;
+		this.programName = programName;
+		this.instructorId = instructorId;
 	}
 
 	public Long getCohortId() {
@@ -60,26 +59,26 @@ public class Cohort {
 		this.endDate = endDate;
 	}
 
-	public String getStatus() {
-		return status;
+	public String getProgramName() {
+		return programName;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setProgramName(String programName) {
+		this.programName = programName;
 	}
 
-	public Set<Program> getProgram() {
-		return program;
+	public Instructor getInstructorId() {
+		return instructorId;
 	}
 
-	public void setProgram(Set<Program> program) {
-		this.program = program;
+	public void setInstructorId(Instructor instructorId) {
+		this.instructorId = instructorId;
 	}
 
 	@Override
 	public String toString() {
-		return "Cohort [cohortId=" + cohortId + ", startDate=" + startDate + ", endDate=" + endDate + ", status="
-				+ status + ", program=" + program + "]";
-	}
+		return "Cohort [cohortId=" + cohortId + ", startDate=" + startDate + ", endDate=" + endDate + ", programName="
+				+ programName + ", instructorId=" + instructorId + "]";
+	}	
 	
 }
