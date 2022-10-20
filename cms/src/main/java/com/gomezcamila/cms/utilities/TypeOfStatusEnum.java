@@ -1,8 +1,8 @@
 package com.gomezcamila.cms.utilities;
 
 public enum TypeOfStatusEnum {
-	UNASSIGNED("Unassigned"),
-	ASSIGNED("Assigned");
+	UNASSIGNED("unassigned"),
+	ASSIGNED("assigned");
 	
 	final public String status;
 	

@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.gomezcamila.cms.model.Instructor;
 import com.gomezcamila.cms.repository.InstructorRepository;
+import com.gomezcamila.cms.utilities.ProgramNamesEnum;
 import com.gomezcamila.cms.utilities.TypeOfStatusEnum;
 
 @SpringBootTest(classes = CmsApplication.class)
@@ -50,7 +51,26 @@ public class InstructorServiceTest {
 		Assertions.assertNotNull(instructors);
 	}
 	
-	//when
+	@Test
+	void getInstructorsByProgAndStatusTest(){
+		
+		//given
+		String program = ProgramNamesEnum.UX_DESIGN.getProgamName();
+		String status = TypeOfStatusEnum.UNASSIGNED.getStatus();
+		
+		//when
+		Instructor instructor = instructorRepository
+								.getInstructorsByProgAndStatus(program, status).get(0);
+		
+		String actualProgram = instructor.getProgramName();		
+		String actualStatus = instructor.getStatus();		
+		
+		
+		//then
+		Assertions.assertEquals(program,actualProgram);
+		Assertions.assertEquals(status,actualStatus);
+		
+	}
 	
 	
 }

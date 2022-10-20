@@ -15,4 +15,6 @@ public interface InstructorRepository extends JpaRepository<Instructor, Long> {
 	@Query("FROM Instructor WHERE programName = ?1")
 	public List<Instructor> getInstructorsByProgramName(String name);
 	
+	@Query("FROM Instructor WHERE programName = ?1 AND STATUS = ?2")
+	public List<Instructor> getInstructorsByProgAndStatus(String program, String status);
 }

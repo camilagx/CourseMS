@@ -7,7 +7,8 @@
 	<!-- CSS BootStrap -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<!-- JavaScript Bundle with Popper -->
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous" defer></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+	<script type="text/javascript" th:src="@{/js/script.js}" defer></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -35,27 +36,40 @@
     </ul>
   </div>
 </nav> 
+<div class="upcohort-container">
+</div>
+<div class="cohortStatus-container">
+	<table class="table table-hover">
+		<thead>
+		    <tr>
+		      <th scope="col">Cohort ID</th>
+		      <th scope="col">Program</th>
+		      <th scope="col">Start Date</th>
+		      <th scope="col">End Date</th>
+		      <th scope="col">Status</th>
+		    </tr>
+		</thead>
+	  	<tbody>
+		 <tr th:each ="cohort : ${cohorts}">
+			<td th:text="*{cohort.cohortId}"></td>
+			<td th:text="*{cohort.programName}"></td>
+			<td th:text="*{cohort.startDate}"></td>
+			<td th:text="*{cohort.endDate}"></td>
+			<td th:if="*{cohort.status} == 'unassigned'">
+				<p>unassigned</p>
+			</td>
+			<td th:unless="*{cohort.status} == 'unassigned'">
+				<p id="good-message">assigned</p>
+			</td>
+			<!-- Assign/Update Buttons -->
+			<td th:if="*{cohort.status} == 'unassigned'">
+				<a th:href = "@{/cohortInstructor/update/{id}(id=${cohort.cohortId})}" class="btn btn-danger btn-sm mb-3">Assign</a>
+			</td>
+			<td th:unless="*{cohort.status} == 'unassigned'">
+				<a th:href = "@{/cohortInstructor/update/{id}(id=${cohort.cohortId})}" class="btn btn-info btn-sm mb-3">Update</a>
+			</td>
+	  </tbody>
+	</table>
+</div>
 </body>
-	<div class="upcohort-container">
-	</div>
-	<div class="cohortStatus-container">
-		<div class="cohortStatus-content">
-		<table>
-			<thead>
-				<tr>
-					<th>Cohort ID</th>
-					<th>Program</th>
-					<th>Start Date<th>
-					<th>End Date<th>
-					<th>Status</th>
-				</tr>
-			</thead>
-			
-		
-		</table>
-		</div>
-	</div>
-
-
-
 </html>

@@ -16,7 +16,7 @@ public class InstructorController {
 	@Autowired
 	private InstructorService instructorService;
 
-	// Gets all instructors & return model and view
+	// Gets main instructor page - contains lists of all isntructors
 	@GetMapping("/instructors")
 	public String listInstructors(Model model) {
 
@@ -24,14 +24,14 @@ public class InstructorController {
 
 		return "instructorList";
 	}
-
+	//Fetches form to create a new Instructor
 	@GetMapping("/instructors/new")
 	public String createInstructorForm(Model model) {
 
 		// create Instructor object and store user input
 		model.addAttribute("instructor", new Instructor());
 
-		//Get list of programs avaialble
+		//Get list of programs available
 		model.addAttribute("programList", instructorService.getProgramNames());
 
 		return "createInstructorForm";
@@ -64,11 +64,12 @@ public class InstructorController {
 
 	// Handle for Instructor updates
 	@PostMapping("/instructors/{id}")
-	public String updateInstructor(@PathVariable Long id, @ModelAttribute("instructor") Instructor instructor,
+	public String updateInstructor(@PathVariable("id") Long id, 
+			@ModelAttribute("instructor") Instructor instructor,
 			Model model) {
 		// get Instructor from database by Id
 		Instructor currentInstructor = instructorService.getInstructorById(id);
-		System.out.println(currentInstructor);
+		
 		currentInstructor.setId(instructor.getId());
 		currentInstructor.setFirstName(instructor.getFirstName());
 		currentInstructor.setLastName(instructor.getLastName());

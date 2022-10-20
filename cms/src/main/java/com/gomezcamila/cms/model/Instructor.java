@@ -92,7 +92,7 @@ public class Instructor {
 
 	@Override
 	public String toString() {
-		return "instructorId" + id + "firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
+		return "instructorId=" + id + "firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
 				+ ", status=" + status + ", programName=" + programName + "]";
 	}
 	

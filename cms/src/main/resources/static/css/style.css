@@ -1,3 +1,22 @@
-.error-message{
+#warning-message{
 	color: red;
+}
+#good-message{
+	color: green;
+}
+
+/*Cohort Instructor page */
+.cohortStatus-container{
+	width: 600px;
+}
+
+#assigncohort-form{
+	width: 450px;
+}
+.cohort-label-cont{
+	display: inline-block;
+	width: 50%;
+}
+.cohort-label-cont2 p{
+	text-align: right;
 }

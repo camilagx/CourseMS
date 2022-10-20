@@ -54,10 +54,12 @@
 				<tr th:each ="cohort : ${cohorts}">
 					<td th:text="*{cohort.cohortId}"></td>
 					<td th:text="*{cohort.startDate}"></td>
+					
 					<td th:text="*{cohort.endDate}"></td>
 					<td th:text="*{cohort.programName}"></td>
+					<!--<td th:if=*{cohort.instructor} == null" th:text="*{unassigned}"></td>
 					
-					<!-- <td>
+					 <td>
 						Calls update/{id} handler and binds current instructor's id to handler
 						<a th:href = "@{/instructors/update/{id}(id=${instructor.id})}" class="btn btn-primary btn-sm mb-3">Update</a>
 						<a th:href = "@{/instructors/{id}(id=${instructor.id})}" class="btn btn-danger btn-sm mb-3">Delete</a>
@@ -65,6 +67,7 @@
 				</tr>
 			</tbody>
 		</table>
+		
 	</div>
 
 </body>

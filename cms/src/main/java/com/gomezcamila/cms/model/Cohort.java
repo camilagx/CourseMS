@@ -19,18 +19,29 @@ public class Cohort {
 	@Column(name="program_name")
 	private String programName;
 	
+	@Column(name="cohort_status")
+	private String status = "unassigned";
+	
 	@OneToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE,
 			  CascadeType.DETACH, CascadeType.REFRESH})
 	@JoinColumn(name="instructor_id")
-	private Instructor instructor;
+	private Instructor instructor;	
 	
+	public Instructor getInstructor() {
+		return instructor;
+	}
+
+	public void setInstructor(Instructor instructor) {
+		this.instructor= instructor;
+	}
 	
 	public Cohort() {
 	}
 
-	public Cohort(String startDate, String endDate,String programName){
+	public Cohort(String startDate, String endDate, String status, String programName){
 		this.startDate = startDate;
 		this.endDate = endDate;
+		this.status = status;
 		this.programName = programName;
 	}
 
@@ -66,13 +77,15 @@ public class Cohort {
 		this.programName = programName;
 	}
 
-	public Instructor getInstructor() {
-		return instructor;
+	
+	public String getStatus() {
+		return status;
 	}
 
-	public void setInstructor(Instructor instructor) {
-		this.instructor= instructor;
+	public void setStatus(String status) {
+		this.status = status;
 	}
+
 
 	@Override
 	public String toString() {

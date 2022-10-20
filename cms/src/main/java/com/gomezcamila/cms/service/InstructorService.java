@@ -56,7 +56,11 @@ public class InstructorService{
 		instructorRepository.deleteById(id);
 		
 		return instructorDeleted;
-		
+	}
+	//CUSTOM QUERIES
+	//get Instructor by Program and Status. This query allows Cohort to be assigned to available Instructor w/ same program
+	public List<Instructor> getInstructorsByProgAndStatus(String program, String status){
+		return instructorRepository.getInstructorsByProgAndStatus(program, status);
 	}
 }
 

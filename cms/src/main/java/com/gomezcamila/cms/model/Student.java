@@ -21,6 +21,14 @@ public class Student {
 	@JoinColumn(name="cohort_id")
 	private Cohort cohort;
 
+	public Cohort getCohort() {
+		return cohort;
+	}
+
+	public void setCohort(Cohort cohort) {
+		this.cohort = cohort;
+	}
+	
 	public Student() {
 	}
 
@@ -51,14 +59,6 @@ public class Student {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
-	}
-
-	public Cohort getCohort() {
-		return cohort;
-	}
-
-	public void setCohort(Cohort cohort) {
-		this.cohort = cohort;
 	}
 
 	@Override

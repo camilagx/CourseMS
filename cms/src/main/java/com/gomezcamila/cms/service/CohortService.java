@@ -43,5 +43,11 @@ public class CohortService {
 		return cohortDeleted;
 	}
 	
-	//Custom Queries. Get Cohort start date by ASC order
+	//Custom Queries. Get Unassigned cohorts
+	public List<Cohort> getUnassignedCohorts(){
+		return cohortRepository.getUnassignedCohorts();
+	}
+	public List<Cohort> getCohortsByStatus(String status){
+		return cohortRepository.getCohortsByStatus(status);
+	}
 }
