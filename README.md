@@ -19,7 +19,7 @@
 ## Technologies  
 - **Java**, **Spring Boot**, **Spring MVC**  
 - **HTML**, **CSS**, **JavaScript**, **Thymeleaf**, **Bootstrap**  
-- **SQL** (e.g., MySQL, PostgreSQL)
+- **SQL** (MariaDB)
 
 ## Setup Instructions  
 ```bash
